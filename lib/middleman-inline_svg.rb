@@ -25,4 +25,4 @@ end
 # Name param may be omited, it will default to underscored
 # version of class name
 
-MiddlemanInlineSVG.register(:inline_svg)
+::Middleman::Extensions.register(:inline_svg, MiddlemanInlineSVG)
