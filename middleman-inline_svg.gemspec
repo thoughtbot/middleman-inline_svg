@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.name        = "middleman-inline_svg"
   s.version     = "0.0.1"
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Daniel Barber"]
-  s.email       = ["github@danbarber.me"]
-  s.homepage    = "http://example.com"
+  s.authors     = ["Daniel Barber", "Tyson Gach"]
+  s.email       = ["github@danbarber.me", "tyson@thoughtbot.com"]
+  # s.homepage    = "http://example.com"
   s.summary     = "Inline your SVG's"
   s.description = "Inline your SVG's and style them with CSS."
 
