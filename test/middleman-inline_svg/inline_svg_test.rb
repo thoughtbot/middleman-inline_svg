@@ -49,4 +49,19 @@ class TestInlineSVG < Minitest::Test
 
     assert_equal new_svg, expected_svg
   end
+
+  def test_it_transforms_attribute_names
+    new_svg = InlineSVG.new(
+      "test/fixtures/circle.svg",
+      aria_hidden: true,
+    ).to_html
+
+    expected_svg = <<~SVG
+      <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\" version=\"1.1\" aria-hidden="true">
+        <circle id="Oval" fill="#000000" cx="32" cy="32" r="30"></circle>
+      </svg>
+    SVG
+
+    assert_equal new_svg, expected_svg
+  end
 end
