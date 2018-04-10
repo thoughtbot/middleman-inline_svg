@@ -4,7 +4,7 @@ $:.push File.expand_path("lib", __dir__)
 
 Gem::Specification.new do |s|
   s.name        = "middleman-inline_svg"
-  s.version     = "0.1.0"
+  s.version     = "0.1.1"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Daniel Barber", "Tyson Gach"]
   s.email       = ["github@danbarber.me", "tyson@thoughtbot.com"]
