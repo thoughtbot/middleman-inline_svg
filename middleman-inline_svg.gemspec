@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Daniel Barber", "Tyson Gach"]
   s.email       = ["github@danbarber.me", "tyson@thoughtbot.com"]
-  # s.homepage    = "http://example.com"
+  s.homepage    = "https://github.com/thoughtbot/middleman-inline_svg"
   s.summary     = "Inline your SVG's"
   s.description = "Inline your SVG's and style them with CSS."
 
