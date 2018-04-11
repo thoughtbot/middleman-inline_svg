@@ -2,6 +2,7 @@ require "nokogiri"
 
 class InlineSVG
   attr_reader :file_name, :options, :title
+  options = defaults.merge(options)
 
   def initialize(file_name, options = {})
     @file_name = file_name
@@ -26,6 +27,10 @@ class InlineSVG
 
   private
 
+  def defaults
+    { role: "img" }
+  end
+  
   def add_title(doc, svg, title)
     title_node = ::Nokogiri::XML::Node.new "title", doc
     title_node.content = title
