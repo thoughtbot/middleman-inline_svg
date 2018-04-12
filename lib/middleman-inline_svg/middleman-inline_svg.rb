@@ -3,12 +3,16 @@ require "middleman-inline_svg/inline_svg"
 class MiddlemanInlineSVG < ::Middleman::Extension
   expose_to_template :inline_svg
 
+  option :defaults, {}, "Default options for the svg"
+
   def initialize(app, options_hash = {}, &block)
     super
   end
 
-  def inline_svg(file_name, options = {})
-    InlineSVG.new(asset_file(file_name), options).to_html
+  def inline_svg(file_name, opts = {})
+    opts = options.defaults.merge(opts)
+
+    InlineSVG.new(asset_file(file_name), opts).to_html
   end
 
   private
