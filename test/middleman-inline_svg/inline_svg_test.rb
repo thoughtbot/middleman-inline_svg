@@ -5,7 +5,7 @@ require_relative "../../lib/middleman-inline_svg/inline_svg"
 class TestInlineSVG < Minitest::Test
   def test_it_adds_a_title
     new_svg = InlineSVG.new(
-      "test/fixtures/circle.svg",
+      File.open("test/fixtures/circle.svg"),
       title: "Circle",
     ).to_html
 
@@ -20,7 +20,7 @@ class TestInlineSVG < Minitest::Test
 
   def test_it_adds_a_class
     new_svg = InlineSVG.new(
-      "test/fixtures/circle.svg",
+      File.open("test/fixtures/circle.svg"),
       class: "circle",
     ).to_html
 
@@ -35,7 +35,7 @@ class TestInlineSVG < Minitest::Test
 
   def test_it_adds_multiple_attributes
     new_svg = InlineSVG.new(
-      "test/fixtures/circle.svg",
+      File.open("test/fixtures/circle.svg"),
       class: "circle",
       role: "img",
       id: "circle",
@@ -52,7 +52,7 @@ class TestInlineSVG < Minitest::Test
 
   def test_it_transforms_attribute_names
     new_svg = InlineSVG.new(
-      "test/fixtures/circle.svg",
+      File.open("test/fixtures/circle.svg"),
       aria_hidden: true,
     ).to_html
 

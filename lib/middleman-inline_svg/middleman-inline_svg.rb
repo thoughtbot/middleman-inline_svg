@@ -18,6 +18,10 @@ class MiddlemanInlineSVG < ::Middleman::Extension
   private
 
   def asset_file(file_name)
-    File.join(app.config[:source], app.config[:images_dir], file_name)
+    File.open(File.join(file_path, file_name))
+  end
+
+  def file_path
+    File.join(app.config[:source], app.config[:images_dir])
   end
 end

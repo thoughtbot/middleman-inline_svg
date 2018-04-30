@@ -1,16 +1,16 @@
 require "nokogiri"
 
 class InlineSVG
-  attr_reader :file_name, :options, :title
+  attr_reader :file, :options, :title
 
-  def initialize(file_name, options = {})
-    @file_name = file_name
+  def initialize(file, options = {})
+    @file = file
     @title = options.delete(:title)
     @options = options
   end
 
   def to_html
-    doc = asset_doc(file_name)
+    doc = asset_doc(file)
     svg = doc.at_css("svg")
 
     if title
@@ -34,9 +34,7 @@ class InlineSVG
     svg.prepend_child(title_node)
   end
 
-  def asset_doc(file_name)
-    File.open(file_name) do |f|
-      ::Nokogiri::XML(f)
-    end
+  def asset_doc(file)
+    ::Nokogiri::XML(file)
   end
 end
