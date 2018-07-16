@@ -5,6 +5,8 @@
 A [Middleman] extension that enables the inlining of SVG's. This gives us the
 ability to style those SVG's using standard CSS.
 
+[Middleman]: https://middlemanapp.com/
+
 ## Installation
 
 1. Add middleman-inline_svg to your `Gemfile`:
