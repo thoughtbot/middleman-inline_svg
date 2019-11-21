@@ -71,10 +71,12 @@ will improve accessibility.
 
 ```erb
 <a>
-  <%= inline_svg "ruby.svg",
-      title: "Ruby logo",
-      class: "ruby-logo",
-      role: "img" %>
+  <%= inline_svg(
+    "ruby.svg",
+    title: "Ruby logo",
+    class: "ruby-logo",
+    role: "img",
+  ) %>
   Ruby
 </a>
 ```
@@ -95,10 +97,12 @@ Underscores are translated into hyphens in the output.
 
 ```erb
 <a>
-  <%= inline_svg "ruby.svg",
-      title: "Ruby logo",
-      class: "ruby-logo",
-      aria_hidden: true %>
+  <%= inline_svg(
+    "ruby.svg",
+    title: "Ruby logo",
+    class: "ruby-logo",
+    aria_hidden: true,
+  ) %>
   Ruby
 </a>
 ```
