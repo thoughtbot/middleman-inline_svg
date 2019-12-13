@@ -2,33 +2,23 @@ version: 2
 jobs:
   build:
     docker:
-       - image: circleci/ruby:2.5.1-node
-
-    working_directory: ~/repo
-
+       - image: circleci/ruby:2.6.5
     steps:
       - checkout
-
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile" }}
-          - v1-dependencies-
-
+            - middleman-inline_svg-bundle-v1-{{ checksum "middleman-inline_svg.gemspec" }}
+            - middleman-inline_svg-bundle-v1-
       - run:
-          name: install dependencies
-          command: |
-            bundle install --path vendor/bundle
-
+          name: Run Bundler
+          command: bundle install --path vendor/bundle
       - save_cache:
+          key: middleman-inline_svg-bundle-v1-{{ checksum "middleman-inline_svg.gemspec" }}
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile" }}
-
       - run:
-          name: run tests
-          command: |
-            bundle exec rake
-
+          name: Run tests
+          command: bundle exec rake
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
