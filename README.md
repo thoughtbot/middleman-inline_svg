@@ -2,20 +2,17 @@
 
 [![CircleCI](https://circleci.com/gh/thoughtbot/middleman-inline_svg.svg?style=svg)](https://circleci.com/gh/thoughtbot/middleman-inline_svg)
 
-A [Middleman] extension that enables the inlining of SVG's. This gives us the
-ability to style those SVG's using standard CSS.
+A [Middleman] extension embed SVG documents in your Middleman views.
 
 [Middleman]: https://middlemanapp.com/
 
 ## Installation
 
-1. Add middleman-inline_svg to your `Gemfile`:
+1. Add `middleman-inline_svg` to your `Gemfile` and run Bundler:
 
     ```ruby
     gem "middleman-inline_svg"
     ```
-
-1. Install the gem:
 
     ```bash
     bundle install
@@ -30,92 +27,64 @@ ability to style those SVG's using standard CSS.
 ## Usage
 
 `middleman-inline_svg` provides an `inline_svg` helper that you can use in your
-templates. Using it will inline your SVG markup directly into the HTML enabling
-you to style it with CSS.
+templates. Using it will inline your SVG document directly into the HTML
+enabling you to style it with CSS and pass in HTML attributes.
 
-Given the following SVG file named `ruby.svg`:
+Given the following SVG file named `heart.svg`:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g id="ruby" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <!-- ... -->
-  </g>
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
 </svg>
 ```
 
 And the following code in a Middleman template:
 
 ```erb
-<a>
-  <%= inline_svg "ruby.svg" %> Ruby
-</a>
+<%= inline_svg "heart.svg", class: "icon icon--small" %>
 ```
 
 Middleman will output the following:
 
 ```html
-<a>
-  <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="ruby" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <!-- ... -->
-    </g>
-  </svg>
-  Ruby
-</a>
+<svg class="icon icon--small" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+</svg>
 ```
 
 It's possible to specify a title for the SVG. And any other options passed will
-be rendered as attributes on the `<svg/>` element. Adding a title to your SVG
+be rendered as attributes on the `<svg>` element. Adding a title to your SVG
 will improve accessibility.
 
 ```erb
-<a>
-  <%= inline_svg(
-    "ruby.svg",
-    title: "Ruby logo",
-    class: "ruby-logo",
-    role: "img",
-  ) %>
-  Ruby
-</a>
+<%= inline_svg(
+  "heart.svg",
+  role: "img",
+  title: "Like this comment",
+) %>
 ```
 
 ```html
-<a>
-  <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="ruby-logo" role="img">
-    <title>Ruby logo</title>
-    <g id="ruby" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <!-- ... -->
-    </g>
-  </svg>
-  Ruby
-</a>
+<svg role="img" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <title>Like this comment</title>
+  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+</svg>
 ```
 
 Underscores are translated into hyphens in the output.
 
 ```erb
-<a>
-  <%= inline_svg(
-    "ruby.svg",
-    title: "Ruby logo",
-    class: "ruby-logo",
-    aria_hidden: true,
-  ) %>
-  Ruby
-</a>
+<%= inline_svg(
+  "heart.svg",
+  aria_hidden: true,
+) %>
 ```
 
 ```html
-<a>
-  <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
-    <g id="ruby" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <!-- ... -->
-    </g>
-  </svg>
-  Ruby
-</a>
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <title>Like this comment</title>
+  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+</svg>
 ```
 
 ## Configuration
@@ -126,7 +95,7 @@ when the extension is activated:
 ```ruby
 activate :inline_svg do |config|
   config.defaults = {
-    role: img
+    role: img,
   }
 end
 ```
